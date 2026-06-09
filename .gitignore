@@ -1,0 +1,18 @@
+# Python bytecode/cache (anywhere in the project)
+**/__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# IDE files (PyCharm / VS Code)
+.idea/
+.vscode/
+*.iml
+
+# Test reports and execution artifacts
+allure-results/
+test-results/
+results/
+.pytest_cache/

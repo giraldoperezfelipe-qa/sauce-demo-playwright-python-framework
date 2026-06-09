@@ -1,5 +1,7 @@
 from playwright.sync_api import expect
 
+from helper.helpers import add_product_to_cart_and_retrieve_its_name
+
 
 class TestProductPage:
     def test_adding_one_element_to_the_cart(self, authentication_page, user_credentials, product_page):
@@ -8,11 +10,9 @@ class TestProductPage:
         # GIVEN: The user is logged in the product page
         authentication_page.login(user, password)
 
-        # WHEN: The user selects any product in the list
-        product_page.add_to_cart_a_random_product_from_the_list()
-
+        # WHEN: The user adds an element from the list to the cart
         # THEN: The shopping cart has 1 new product
-        expect(product_page.get_cart_counter()).to_have_text("1")
+        add_product_to_cart_and_retrieve_its_name(product_page, "1")
 
     def test_item_still_in_the_cart_after_logout(self, authentication_page, user_credentials, product_page):
         # GIVEN: The user has added an item to the shopping cart
@@ -38,5 +38,8 @@ class TestProductPage:
         # WHEN: Another user logs in
         authentication_page.login("problem_user", "secret_sauce")
 
-        # THEN: The shopping cart items counter must not be visible
-        expect(product_page.get_cart_counter()).not_to_be_visible()
+        # THEN: The shopping cart must be empty
+        expect(
+            product_page.get_cart_counter(),
+            "The cart should be empty, this account never added any product to the cart"
+        ).not_to_be_visible()

@@ -2,6 +2,7 @@ import allure
 import pytest
 from playwright.sync_api import Page
 from pages.authentication_page import AuthenticationPage
+from pages.cart_page import CartPage
 from pages.product_page import ProductPage
 from pathlib import Path
 
@@ -30,6 +31,10 @@ def authentication_page(page: Page):
 @pytest.fixture
 def product_page(page: Page):
     return ProductPage(page)
+
+@pytest.fixture
+def cart_page(page: Page):
+    return CartPage(page)
 
 
 @pytest.fixture
