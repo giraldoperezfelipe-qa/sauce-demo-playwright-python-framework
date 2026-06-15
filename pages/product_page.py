@@ -6,6 +6,7 @@ class ProductPage:
     class Locators:
         INVENTORY_ITEMS = ".inventory_item"
         ITEM_NAME = ".inventory_item_name"
+        ITEM_DESCRIPTION = ".inventory_item_desc"
         CART_ICON = ".shopping_cart_link"
         CART_ITEMS_COUNTER = ".shopping_cart_badge"
         ADD_TO_CART_BUTTON = ".btn.btn_primary.btn_small.btn_inventory"
@@ -14,6 +15,7 @@ class ProductPage:
         self.page = page
         self.inventory_items = page.locator(self.Locators.INVENTORY_ITEMS)
         self.item_name = page.locator(self.Locators.ITEM_NAME)
+        self.item_description = page.locator(self.Locators.ITEM_DESCRIPTION)
         self.cart_icon = page.locator(self.Locators.CART_ICON)
         self.add_to_cart_button = page.locator(self.Locators.ADD_TO_CART_BUTTON)
 
@@ -32,3 +34,6 @@ class ProductPage:
 
     def get_item_name(self, item):
         return item.locator(self.Locators.ITEM_NAME).inner_text()
+
+    def get_item_description(self, item):
+        return item.locator(self.Locators.ITEM_DESCRIPTION).inner_text()

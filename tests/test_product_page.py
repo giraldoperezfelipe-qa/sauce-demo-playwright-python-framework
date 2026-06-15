@@ -1,6 +1,6 @@
 from playwright.sync_api import expect
 
-from helper.helpers import add_product_to_cart_and_retrieve_its_name
+from helper.helpers import add_product_to_cart_and_retrieve_its_info
 
 
 class TestProductPage:
@@ -12,7 +12,7 @@ class TestProductPage:
 
         # WHEN: The user adds an element from the list to the cart
         # THEN: The shopping cart has 1 new product
-        add_product_to_cart_and_retrieve_its_name(product_page, "1")
+        add_product_to_cart_and_retrieve_its_info(product_page, "1", False)
 
     def test_item_still_in_the_cart_after_logout(self, authentication_page, user_credentials, product_page):
         # GIVEN: The user has added an item to the shopping cart
