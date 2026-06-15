@@ -4,6 +4,7 @@ from helper.helpers import add_product_to_cart_and_retrieve_its_info
 
 
 class TestCartPage:
+
     def test_added_item_has_the_same_name(self, authentication_page, user_credentials, product_page, cart_page):
         # GIVEN: The user is logged in the product page
         user, password = user_credentials["valid"]
