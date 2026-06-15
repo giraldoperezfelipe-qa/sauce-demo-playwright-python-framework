@@ -46,5 +46,5 @@ class ProductPage:
         all_items_prices_list = self.price_tag.all_inner_texts()
         return [float(price.replace('$', '')) for price in all_items_prices_list]
 
-    def select_low_to_high_option(self):
-        self.filter.select_option("lohi")
+    def select_filter_option(self, option):
+        self.filter.select_option(option)

@@ -1,5 +1,5 @@
 from playwright.sync_api import expect
-
+from util.constants import ProductFilterOptions
 from helper.helpers import add_product_to_cart_and_retrieve_its_info
 
 
@@ -53,14 +53,33 @@ class TestProductPage:
         authentication_page.login(user, password)
 
         # WHEN: The user sorts the products by price from low to high
-        product_page.select_low_to_high_option()
+        product_page.select_filter_option(ProductFilterOptions.PRICE_LOW_TO_HIGH)
 
         # THEN: The items must be sorted from low to high by price
         all_items_prices_list_clean = product_page.get_items_price_list()
 
-        for i in range(len(all_items_prices_list_clean) - 1):
-            current_price = all_items_prices_list_clean[i]
-            next_price = all_items_prices_list_clean[i + 1]
+        for price in range(len(all_items_prices_list_clean) - 1):
+            current_price = all_items_prices_list_clean[price]
+            next_price = all_items_prices_list_clean[price + 1]
 
             # Assert that current price is less than, or equal, to the next price in the list
             assert current_price <= next_price, f"Sort filter failed! {current_price} is greater than {next_price}"
+
+    def test_high_to_low_price_filter(self, authentication_page, user_credentials, product_page):
+        user, password = user_credentials["valid"]
+
+        # GIVEN: The user is logged in the product page
+        authentication_page.login(user, password)
+
+        # WHEN: The user sorts the products by price from high to low
+        product_page.select_filter_option(ProductFilterOptions.PRICE_HIGH_TO_LOW)
+
+        # THEN: The items must be sorted from low to high by price
+        all_items_prices_list_clean = product_page.get_items_price_list()
+
+        for price in range(len(all_items_prices_list_clean) - 1):
+            current_price = all_items_prices_list_clean[price]
+            next_price = all_items_prices_list_clean[price + 1]
+
+            # Assert that current price is less than, or equal, to the next price in the list
+            assert current_price >= next_price, f"Sort filter failed! {current_price} is greater than {next_price}"
