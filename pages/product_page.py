@@ -46,5 +46,8 @@ class ProductPage:
         all_items_prices_list = self.price_tag.all_inner_texts()
         return [float(price.replace('$', '')) for price in all_items_prices_list]
 
+    def get_product_names_list(self):
+        return self.item_name.all_inner_texts()
+
     def select_filter_option(self, option):
         self.filter.select_option(option)
