@@ -3,6 +3,7 @@ import pytest
 from playwright.sync_api import Page
 from pages.authentication_page import AuthenticationPage
 from pages.cart_page import CartPage
+from pages.checkout_page import CheckoutPage
 from pages.product_page import ProductPage
 from pathlib import Path
 
@@ -32,9 +33,15 @@ def authentication_page(page: Page):
 def product_page(page: Page):
     return ProductPage(page)
 
+
 @pytest.fixture
 def cart_page(page: Page):
     return CartPage(page)
+
+
+@pytest.fixture
+def checkout_page(page: Page):
+    return CheckoutPage(page)
 
 
 @pytest.fixture
