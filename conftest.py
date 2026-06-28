@@ -7,6 +7,8 @@ from pages.checkout_page import CheckoutPage
 from pages.product_page import ProductPage
 from pathlib import Path
 
+from util.constants import CheckoutFormInfo
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -57,4 +59,16 @@ def user_credentials():
         "blank_username": (blank_string, secret_sauce),
         "blank_password": (standard_user, blank_string),
         "locked": ("locked_out_user", secret_sauce),
+    }
+
+
+@pytest.fixture
+def checkout_form_states():
+    blank_string = ""
+
+    return {
+        "every_entry_blank": (blank_string, blank_string, blank_string),
+        "only_lastname": (blank_string, CheckoutFormInfo.LAST_NAME, blank_string),
+        "only_name": (CheckoutFormInfo.FIRST_NAME, blank_string, blank_string),
+        "name_and_lastname": (CheckoutFormInfo.FIRST_NAME, CheckoutFormInfo.LAST_NAME, blank_string)
     }

@@ -1,7 +1,5 @@
 from playwright.sync_api import Page
 
-from util.constants import CheckoutFormInfo
-
 
 class CheckoutPage:
     class Locators:
@@ -15,6 +13,7 @@ class CheckoutPage:
         CHECKOUT_CHECK_ICON = ".pony_express"
         CONFIRMATION_TITLE = ".complete-header"
         CONFIRMATION_TEXT = ".complete-text"
+        ERROR_MESSAGE = ".error-message-container.error"
 
     def __init__(self, page: Page):
         self.page = page
@@ -28,8 +27,9 @@ class CheckoutPage:
         self.checkout_check_icon = page.locator(self.Locators.CHECKOUT_CHECK_ICON)
         self.confirmation_title = page.locator(self.Locators.CONFIRMATION_TITLE)
         self.confirmation_text = page.locator(self.Locators.CONFIRMATION_TEXT)
+        self.error_message = page.locator(self.Locators.ERROR_MESSAGE)
 
-    def fill_checkout_form(self):
-        self.first_name_input.fill(CheckoutFormInfo.FIRST_NAME)
-        self.last_name_input.fill(CheckoutFormInfo.LAST_NAME)
-        self.postal_code_input.fill(CheckoutFormInfo.ZIP_CODE)
+    def fill_checkout_form(self, first_name, last_name, postal_code):
+        self.first_name_input.fill(first_name)
+        self.last_name_input.fill(last_name)
+        self.postal_code_input.fill(postal_code)

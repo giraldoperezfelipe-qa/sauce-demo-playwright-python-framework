@@ -1,6 +1,8 @@
 import pytest, re
 from playwright.sync_api import expect
 
+from util.constants import AuthenticationErrorMessages
+
 
 class TestAuthenticationPage:
     def test_login_success_with_valid_credentials(self, authentication_page, user_credentials):
@@ -14,11 +16,11 @@ class TestAuthenticationPage:
         expect(authentication_page.page.locator(".title")).to_have_text("Products")
 
     @pytest.mark.parametrize("user_type, expected_error", [
-        ("invalid", "Username and password do not match"),
-        ("blank_credentials", "Username is required"),
-        ("blank_username", "Username is required"),
-        ("blank_password", "Password is required"),
-        ("locked", "this user has been locked out"),
+        ("invalid", AuthenticationErrorMessages.ERROR_INVALID_CREDENTIALS),
+        ("blank_credentials", AuthenticationErrorMessages.ERROR_USERNAME_REQUIRED),
+        ("blank_username", AuthenticationErrorMessages.ERROR_USERNAME_REQUIRED),
+        ("blank_password", AuthenticationErrorMessages.ERROR_PASSWORD_REQUIRED),
+        ("locked", AuthenticationErrorMessages.ERROR_USER_LOCKED),
     ])
     def test_login_failures(self, authentication_page, user_credentials, user_type, expected_error):
         user, password = user_credentials[user_type]
@@ -28,16 +30,16 @@ class TestAuthenticationPage:
         authentication_page.login(user, password)
 
         # THEN: The user must see the proper error message from the failed login
-        expect(authentication_page.get_error_message()).to_contain_text(re.compile(expected_error, re.IGNORECASE))
+        expect(authentication_page.get_error_message()).to_have_text(re.compile(f"^{expected_error}$", re.IGNORECASE))
 
     def test_attempt_to_go_to_inventory_without_login_in(self, authentication_page):
         # GIVEN: The user is not logged in
         # WHEN: The user attempts to go to inventory page
         authentication_page.navigate_to_product_page()
 
-        # THEN: The user must see the proper error message indicating that you can't go to that page without login in
-        expect(authentication_page.get_error_message()).to_contain_text(
-            re.compile("You can only access '/inventory.html' when you are logged in.", re.IGNORECASE))
+        # THEN: The user must see the proper error message indicating that the login failed
+        expect(authentication_page.get_error_message()).to_have_text(
+            re.compile(f"^{AuthenticationErrorMessages.ERROR_ACCESSING_INVENTORY_NOT_LOGGED_IN}$", re.IGNORECASE))
 
     def test_logout(self, authentication_page, user_credentials):
         user, password = user_credentials["valid"]
