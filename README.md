@@ -19,8 +19,8 @@ Make sure you have the following installed on your machine:
 📦 Installation & Setup
 
     1. Clone the repository:
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
-    cd YOUR_REPOSITORY_NAME
+    git clone <REPO_LINK>
+    cd sauce-demo-playwright-python-framework
 
     2. Create and activate a virtual environment (recommended):
     python -m venv venv
