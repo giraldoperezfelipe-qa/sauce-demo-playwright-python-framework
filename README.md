@@ -37,6 +37,9 @@ Make sure you have the following installed on your machine:
     4. Install Playwright browsers:
     playwright install
 
+    5. Install allure:
+    npm install -g allure-commandline
+
 🏃‍♂️ Running the Tests
 
 To run the demo script or test suite, use the following commands:
