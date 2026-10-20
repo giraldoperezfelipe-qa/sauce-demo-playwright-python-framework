@@ -2,19 +2,19 @@
 
 This is a small, end-to-end automation testing demo built using Python and Playwright, targeting the demo e-commerce store SauceDemo.
 
-🚀 Features
+🚀 **Features**
 
     1. Automated Login Flow: Tests standard users, locked-out users, and performance glitch users.
     2. Shopping Cart Operations: Adds items to the cart, verifies item details, and removes items.
     3. Checkout Process: Fills out checkout information and completes a successful order.
 
-🛠️ Prerequisites
+🛠️ **Prerequisites**
 
 Make sure you have the following installed on your machine:
 -   Python (version 3.8 or higher)
 -   pip (Python package manager)
 
-📦 Installation & Setup
+📦 **Installation & Setup**
 
     1. Clone the repository:
     git clone <REPO_LINK>
@@ -35,7 +35,7 @@ Make sure you have the following installed on your machine:
     4. Install Playwright browsers:
     playwright install
 
-🏃‍♂️ Running the Tests
+🏃‍♂️ **Running the Tests**
 
 To run the demo script or test suite, use the following commands:
 
@@ -49,7 +49,7 @@ To run the demo script or test suite, use the following commands:
     pytest tests/test_checkout.py
 
 
-📊 See the results in Allure report
+📊 **See the results in Allure report**
 
 For checking the results in a report, you must:
 
@@ -63,6 +63,6 @@ For checking the results in a report, you must:
     allure serve allure-results
 
 
-💡 Credentials Used for Testing
+💡 **Credentials Used for Testing**
 
 Saucedemo provides built-in user accounts for testing purposes:
