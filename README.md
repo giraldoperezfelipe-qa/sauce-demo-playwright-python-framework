@@ -13,10 +13,8 @@ This is a small, end-to-end automation testing demo built using Python and Playw
 🛠️ Prerequisites
 
 Make sure you have the following installed on your machine:
-
-    Python (version 3.8 or higher)
-
-    pip (Python package manager)
+-   Python (version 3.8 or higher)
+-   pip (Python package manager)
 
 📦 Installation & Setup
 
