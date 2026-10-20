@@ -49,9 +49,9 @@ To run the demo script or test suite, use the following commands:
     pytest tests/test_checkout.py
 
 
-📊 Reporting
+📊 See the results in Allure report
 
-For reporting, you must:
+For checking the results in a report, you must:
 
     1. Install allure:
     npm install -g allure-commandline
