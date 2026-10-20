@@ -13,6 +13,7 @@ class TestCartPage:
         # AND: The user checks the current cart
         product_page.cart_icon.click()
 
+        cart_page.title.wait_for(state="visible")
         item_name_in_cart_list = cart_page.get_item_name()
 
         # THEN: The item in the cart must be the same item selected from the list

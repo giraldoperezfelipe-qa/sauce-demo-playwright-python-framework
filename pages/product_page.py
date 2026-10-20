@@ -18,9 +18,8 @@ class ProductPage:
         self.add_to_cart_button = page.locator(self.Locators.ADD_TO_CART_BUTTON)
 
     def pick_random_item(self):
+        self.inventory_items.first.wait_for(state="visible")
         items = self.inventory_items.all()
-        if not items:
-            raise RuntimeError("No inventory items found on the page.")
 
         return random.choice(items)
 
