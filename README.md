@@ -22,19 +22,19 @@ Make sure you have the following installed on your machine:
     git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
     cd YOUR_REPOSITORY_NAME
 
-    Create and activate a virtual environment (recommended):
+    2. Create and activate a virtual environment (recommended):
     python -m venv venv
 
-    # On Windows:
-    venv\Scripts\activate
+      # On Windows, run in Powershell:
+      venv\Scripts\activate
 
-    # On macOS/Linux:
-    source venv/bin/activate
+      # On macOS/Linux, run in Terminal:
+      source venv/bin/activate
 
-    Install dependencies:
+    3. Install dependencies:
     pip install pytest playwright
 
-    Install Playwright browsers:
+    4. Install Playwright browsers:
     playwright install
 
 🏃‍♂️ Running the Tests
