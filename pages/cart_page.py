@@ -17,8 +17,9 @@ class CartPage:
         self.remove_item_button = page.locator(self.Locators.REMOVE_ITEM_BUTTON)
         self.checkout_button = page.locator(self.Locators.CHECKOUT_BUTTON)
 
-    def get_cart_item_name(self):
-        return self.item_name.inner_text()
+    def get_cart_item_names(self):
+        # .all_inner_texts() for n matches, returning a list of strings
+        return self.item_name.all_inner_texts()
 
     def get_cart_item_description(self):
         return self.item_description.inner_text()
