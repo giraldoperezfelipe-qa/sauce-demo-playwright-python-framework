@@ -1,4 +1,5 @@
 import random
+
 from playwright.sync_api import Page
 
 
@@ -17,16 +18,25 @@ class ProductPage:
         self.cart_icon = page.locator(self.Locators.CART_ICON)
         self.add_to_cart_button = page.locator(self.Locators.ADD_TO_CART_BUTTON)
 
-    def pick_random_item(self):
+    def pick_random_n_products(self, number_of_products_to_add):
         self.inventory_items.first.wait_for(state="visible")
-        items = self.inventory_items.all()
+        all_items_in_list = self.inventory_items.all()
+        number_of_products_in_list = len(all_items_in_list)
 
-        return random.choice(items)
+        if number_of_products_to_add < 0:
+            raise ValueError("Items to add to the cart can only be positive integers, please check")
+        elif number_of_products_in_list < number_of_products_to_add:
+            raise ValueError("You have requested to add more items to your cart than the currently amount available")
+        else:
+            # Select random unique items in list, based on the number_of_products
+            return random.sample(all_items_in_list, number_of_products_to_add)
 
-    def add_to_cart_an_item(self, item):
-        item.locator(self.add_to_cart_button).click()
+    def add_items_to_cart(self, items_to_add):
+        for item in items_to_add:
+            item.locator(self.add_to_cart_button).click()
 
     def get_cart_counter(self):
+        self.inventory_items.first.wait_for(state="visible")
         return self.page.locator(self.Locators.CART_ITEMS_COUNTER)
 
     def get_item_name(self, item):
