@@ -1,6 +1,4 @@
-from playwright.sync_api import expect
-
-from helper.helpers import add_product_to_cart_and_retrieve_its_info
+from helper.helpers import *
 
 
 class TestCartPage:
@@ -11,12 +9,13 @@ class TestCartPage:
         authentication_page.login(user, password)
 
         # WHEN: The user adds an element from the list to the cart
-        item_name_in_product_list, item_description_in_product_list = \
-            (add_product_to_cart_and_retrieve_its_info(product_page, "1", True))
+        item_name_in_product_list = add_n_products_to_cart(product_page, 1)
 
         # AND: The user checks the current cart
         product_page.cart_icon.click()
 
+        wait_for_element_to_be_visible(cart_page.title)
+        item_name_in_cart_list = cart_page.get_item_name()
         item_name_in_cart_list = cart_page.get_cart_item_name()
         item_description_in_cart_list = cart_page.get_cart_item_description()
 

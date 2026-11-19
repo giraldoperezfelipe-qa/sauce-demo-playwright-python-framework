@@ -1,30 +1,68 @@
-# Playwright Python Demo Project
+# Sauce demo playwright python framework
 
-This project is a small project for using **Playwright with Python** for UI automation testing. It specifically targets the popular practice website: [Sauce Demo](https://www.saucedemo.com/).
+This is a small, end-to-end automation testing demo built using Python and Playwright, targeting the demo e-commerce store SauceDemo.
 
-The framework integrates **Cucumber Gherkin** syntax for behavior-driven development (BDD) and generates detailed test reports using **Allure**.
+🚀 **Features**
 
----
+    1. Automated Login Flow: Tests standard users, locked-out users, and performance glitch users.
+    2. Shopping Cart Operations: Adds items to the cart, verifies item details, and removes items.
+    3. Checkout Process: Fills out checkout information and completes a successful order.
 
-## 🛠️ Features
-* **UI Automation:** Powered by Playwright (Python).
-* **BDD Syntax:** Structured with Cucumber Gherkin.
-* **Reporting:** Visual and interactive reports via Allure.
+🛠️ **Prerequisites**
 
----
+Make sure you have the following installed on your machine:
+-   Python (version 3.8 or higher)
+-   pip (Python package manager)
 
-## 🚀 How to Run the Project
+📦 **Installation & Setup**
 
-Follow these steps to execute the tests and view the results.
+    1. Clone the repository:
+    git clone <REPO_LINK>
+    cd sauce-demo-playwright-python-framework
 
-### 1. Run the tests
-Execute the test suite with the following command (take into account that this command cleans the previous report data)
-```bash
-pytest --alluredir=allure-results --clean-alluredir
-```
+    2. Create and activate a virtual environment (recommended):
+    python -m venv venv
 
-### 2. Generate the report
-Generate the Allure report with the following command:
-```bash
-allure serve allure-results
-```
+      # On Windows, run in Powershell:
+      venv\Scripts\activate
+
+      # On macOS/Linux, run in Terminal:
+      source venv/bin/activate
+
+    3. Install dependencies:
+    pip install pytest playwright
+
+    4. Install Playwright browsers:
+    playwright install
+
+🏃‍♂️ **Running the Tests**
+
+To run the demo script or test suite, use the following commands:
+
+    Run all tests (headless mode):
+    pytest
+
+    Run tests with the browser UI visible (headed mode):
+    pytest --headed
+
+    Run a specific test file:
+    pytest tests/test_checkout.py
+
+
+📊 **See the results in Allure report**
+
+For checking the results in a report, you must:
+
+    1. Install allure:
+    npm install -g allure-commandline
+
+    2. Run the tests, and clean the allure folder:
+    pytest --alluredir=allure-results --clean-alluredir  
+
+    3. Run the allure server, to check the results:
+    allure serve allure-results
+
+
+💡 **Credentials Used for Testing**
+
+Saucedemo provides built-in user accounts for testing purposes:

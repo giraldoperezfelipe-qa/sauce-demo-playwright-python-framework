@@ -1,4 +1,6 @@
 from playwright.sync_api import expect
+
+from helper.helpers import add_n_products_to_cart
 from util.constants import ProductFilterOptions
 from helper.helpers import add_product_to_cart_and_retrieve_its_info
 
@@ -10,8 +12,19 @@ class TestProductPage:
         # GIVEN: The user is logged in the product page
         authentication_page.login(user, password)
 
-        # WHEN: The user adds an element from the list to the cart
+        # WHEN: The user adds an item from the list to the cart
         # THEN: The shopping cart has 1 new product
+        add_n_products_to_cart(product_page, 1)
+
+    def test_adding_two_elements_to_the_cart(self, authentication_page, user_credentials, product_page):
+        user, password = user_credentials["valid"]
+
+        # GIVEN: The user is logged in the product page
+        authentication_page.login(user, password)
+
+        # WHEN: The user adds two items from the list to the cart
+        # THEN: The shopping cart has 1 new product
+        add_n_products_to_cart(product_page, 2)
         add_product_to_cart_and_retrieve_its_info(product_page, "1", False)
 
     def test_item_still_in_the_cart_after_logout(self, authentication_page, user_credentials, product_page):
