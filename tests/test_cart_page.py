@@ -1,4 +1,4 @@
-from helper.helpers import add_product_to_cart_and_retrieve_its_name
+from helper.helpers import *
 
 
 class TestCartPage:
@@ -8,12 +8,12 @@ class TestCartPage:
         authentication_page.login(user, password)
 
         # WHEN: The user adds an element from the list to the cart
-        item_name_in_product_list = add_product_to_cart_and_retrieve_its_name(product_page, "1")
+        item_name_in_product_list = add_n_products_to_cart(product_page, 1)
 
         # AND: The user checks the current cart
         product_page.cart_icon.click()
 
-        cart_page.title.wait_for(state="visible")
+        wait_for_element_to_be_visible(cart_page.title)
         item_name_in_cart_list = cart_page.get_item_name()
 
         # THEN: The item in the cart must be the same item selected from the list

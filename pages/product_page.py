@@ -1,7 +1,7 @@
 import random
 
 from playwright.sync_api import Page
-
+from helper.helpers import wait_for_element_to_be_visible
 
 class ProductPage:
     class Locators:
@@ -19,7 +19,7 @@ class ProductPage:
         self.add_to_cart_button = page.locator(self.Locators.ADD_TO_CART_BUTTON)
 
     def pick_random_n_products(self, number_of_products_to_add):
-        self.inventory_items.first.wait_for(state="visible")
+        wait_for_element_to_be_visible(self.inventory_items.first)
         all_items_in_list = self.inventory_items.all()
         number_of_products_in_list = len(all_items_in_list)
 
@@ -36,7 +36,7 @@ class ProductPage:
             item.locator(self.add_to_cart_button).click()
 
     def get_cart_counter(self):
-        self.inventory_items.first.wait_for(state="visible")
+        wait_for_element_to_be_visible(self.inventory_items.first)
         return self.page.locator(self.Locators.CART_ITEMS_COUNTER)
 
     def get_item_name(self, item):
